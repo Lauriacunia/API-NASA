@@ -23,9 +23,21 @@ public class TemperaturaService {
     }
 
 
+    public Temperatura buscarTemperaturaPorId(int temperaturaId){
+    
+        Optional<Temperatura> pOptional = temperaturaRepository.findById(temperaturaId);
+       
+        if(pOptional.isPresent()){
+
+            return pOptional.get();
+        }
+        return null;
+        
+
+    }
     public void borrarTemperatura(Temperatura temperatura){
 
-        temperaturaRepository.delete(temperatura);
+        temperatura.setAnioTemperatura(0);
 
     }
 }

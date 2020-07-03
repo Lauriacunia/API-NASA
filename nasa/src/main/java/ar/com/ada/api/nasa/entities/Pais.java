@@ -1,4 +1,4 @@
-package ar.com.ada.api.rrhh.entities;
+package ar.com.ada.api.nasa.entities;
 
 import java.math.BigDecimal;
 
@@ -13,7 +13,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "pais")
-public class Categoria {
+public class Pais {
     @Id
     @Column(name = "pais_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,11 +3,12 @@ package ar.com.ada.api.nasa.services;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.config.RepositoryConfiguration;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.nasa.entities;
+import ar.com.ada.api.nasa.entities.*;
 
-import ar.com.ada.api.nasa.repos.PaisRepository;
+import ar.com.ada.api.nasa.repos.*;
 
 @Service
 public class PaisService {
@@ -16,31 +17,20 @@ public class PaisService {
     PaisRepository repository;
 
 
-    public List<Paises> listarPaises() {
+    public List<Pais> listarPaises() {
 
         return repository.findAll();
     }
 
-    public List<Empleado> traerEmpleadosPorCategoria(int categoriaId){
 
-        Optional<Categoria> cOptional = repository.findById(categoriaId);
-        List<Empleado> listaVacia = new ArrayList<>();
-        
-        if(cOptional.isPresent()){
-
-            return (cOptional.get()).getEmpleados();
-        }
-        return listaVacia;
-
-    }
 
     public Pais buscarPaisPorId(int paisId){
     
         Optional<Pais> pOptional = repository.findById(paisId);
        
-        if(cOptional.isPresent()){
+        if(pOptional.isPresent()){
 
-            return cOptional.get();
+            return pOptional.get();
         }
         return null;
         
@@ -50,7 +40,8 @@ public class PaisService {
 
         paisOriginal.setNombre(nuevoNombre);
 
-        paisRepository.save(paisOriginal);
+        repository.save(paisOriginal);
 
     }
+    
 }

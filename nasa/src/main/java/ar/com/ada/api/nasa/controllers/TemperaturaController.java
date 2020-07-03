@@ -1,4 +1,4 @@
-package ar.com.ada.api.rrhh.controllers;
+package ar.com.ada.api.nasa.controllers;
 
 import java.util.Date;
 
@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.com.ada.api.nasa.entities;
-import ar.com.ada.api.nasa.entities.Temperatura;
-import ar.com.ada.api.nasa.models.requests.EmpleadoRequest;
-import ar.com.ada.api.nasa.models.requests.SueldoInfoRequest;
+import ar.com.ada.api.nasa.entities.*;
+import ar.com.ada.api.nasa.models.requests.*;
 import ar.com.ada.api.nasa.models.responses.GenericResponse;
-import ar.com.ada.api.nasa.services.PaisService;
-import ar.com.ada.api.nasa.services.TemperaturaService;
+import ar.com.ada.api.nasa.services.*;
+
 
 @RestController
 public class TemperaturaController {
@@ -33,7 +31,7 @@ public class TemperaturaController {
     public ResponseEntity<?> crearTemperatura(@RequestBody TemperaturaRequest info){
         
         Temperatura temperatura = new Temperatura();
-        temperatura.setPais(paisService.buscarPaisPorId(paisId);
+        temperatura.setPais(paisService.buscarPaisPorId(info.paisId));
         temperatura.setAnioTemperatura(info.anioTemperatura);
         temperatura.setTemperaturaGrados(info.temperaturaGrados);
         
@@ -46,39 +44,10 @@ public class TemperaturaController {
         resp.message = " generado con exito";
 
         return ResponseEntity.ok(resp);
-
-    }
-
-    @GetMapping("/empleados")
-    public ResponseEntity<?> listarEmpleado(){
-
-        return ResponseEntity.ok(empleadoService.listarEmpleados());
+    
     }
 
 
-
-
-    @DeleteMapping("/empleados/{id}")
-    public ResponseEntity<?> borrarEmpleado(@PathVariable int id){
-
-        Empleado empleado = empleadoService.traerEmpledoPorId(id);
-
-        if(empleado != null){
-
-            empleadoService.borrarEmpleado(empleado);
-
-            GenericResponse resp = new GenericResponse();
-            resp.isOk = true;
-            resp.id = empleado.getEmpleadoId();
-            resp.message = "Fue eliminado con exito";
-
-       return ResponseEntity.ok(resp); 
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        
-
-    }
 
     @DeleteMapping("/temperaturas/{id}")
     public ResponseEntity<?> borrarTemperatura(@PathVariable int id){

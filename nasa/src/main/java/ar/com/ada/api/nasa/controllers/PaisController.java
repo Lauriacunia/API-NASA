@@ -3,14 +3,13 @@ package ar.com.ada.api.nasa.controllers;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import ar.com.ada.api.nasa.entities;
-import ar.com.ada.api.nasa.services;
+import ar.com.ada.api.nasa.entities.*;
+import ar.com.ada.api.nasa.models.responses.GenericResponse;
+import ar.com.ada.api.nasa.services.*;
 
 @RestController
 public class PaisController {
@@ -19,7 +18,7 @@ public class PaisController {
 
 
     @GetMapping("/paises")
-    public ResponseEntity<List<Paises>> listarPaises() {
+    public ResponseEntity<List<Pais>> listarPaises() {
         
         return ResponseEntity.ok(paisService.listarPaises());
  

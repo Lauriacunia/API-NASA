@@ -1,14 +1,12 @@
-package ar.com.ada.api.rrhh.repos;
+package ar.com.ada.api.nasa.repos;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ar.com.ada.api.rrhh.entities.Categoria;
+import ar.com.ada.api.nasa.entities.*;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository <Categoria, Integer>{
-
-
+public interface PaisRepository extends JpaRepository <Pais, Integer>{
 
 
     

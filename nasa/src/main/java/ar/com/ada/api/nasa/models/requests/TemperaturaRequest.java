@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class TemperaturaRequest {
 
-    private int paisId;
-    private int anioTemperatura;
-    private double temperaturaGrados;
+    public int paisId;
+    public int anioTemperatura;
+    public double temperaturaGrados;
     
 }
