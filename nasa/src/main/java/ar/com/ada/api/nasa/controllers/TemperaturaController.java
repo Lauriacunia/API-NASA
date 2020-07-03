@@ -107,12 +107,12 @@ el siguiente formato JSON Array:
 */
 
 @GetMapping("/temperaturas/anio/{anio}")
-public ResponseEntity<?> buscarTemperaturasPorAnio(@PathVariable int anioTemperatura){
+public List<Temperatura> buscarTemperaturasPorAnio(@PathVariable int anioTemperatura) {
 
     List<Temperatura> temperaturasPorAnio = new ArrayList(); 
-    temperaturasPorAnio = temperaturaService.buscarTemperaturaPorAnio(anioTemperatura);
+    temperaturasPorAnio = temperaturaService.buscarTemperaturasPorAnio(anioTemperatura);
    
-    return temperaturaPorAnio;
+    return temperaturasPorAnio;
 
 }
 

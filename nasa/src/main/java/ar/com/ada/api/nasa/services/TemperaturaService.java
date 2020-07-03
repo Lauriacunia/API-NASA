@@ -36,7 +36,7 @@ public class TemperaturaService {
 
     }
 
-    public List<Temperatura> buscarTempraturasPorAnio(int anio){
+    public List<Temperatura> buscarTemperaturasPorAnio(int anio){
 
         return temperaturaRepository.findAllByAnio(anio);
 
