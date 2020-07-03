@@ -79,4 +79,26 @@ public class TemperaturaController {
         
 
     }
+
+    @DeleteMapping("/temperaturas/{id}")
+    public ResponseEntity<?> borrarTemperatura(@PathVariable int id){
+
+        Temperatura temperatura = temperaturaService.buscarTemperaturaPorId(id);
+
+        if(temperatura != null){
+
+            temperaturaService.borrarTemperatura(temperatura);
+
+            GenericResponse resp = new GenericResponse();
+            resp.isOk = true;
+            resp.id = temperatura.getTemperaturaId();
+            resp.message = "Fue eliminada con exito";
+
+       return ResponseEntity.ok(resp); 
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        
+
+    }
 }  

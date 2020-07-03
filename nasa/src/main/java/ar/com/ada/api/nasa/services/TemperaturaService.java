@@ -23,5 +23,9 @@ public class TemperaturaService {
     }
 
 
+    public void borrarTemperatura(Temperatura temperatura){
 
+        temperaturaRepository.delete(temperatura);
+
+    }
 }
