@@ -35,6 +35,12 @@ public class TemperaturaService {
         
 
     }
+
+    public List<Temperatura> buscarTempraturasPorAnio(int anio){
+
+        return temperaturaRepository.findAllByAnio(anio);
+
+    }
     public void borrarTemperatura(Temperatura temperatura){
 
         temperatura.setAnioTemperatura(0);

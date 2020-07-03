@@ -83,14 +83,47 @@ public class TemperaturaController {
 
         Pais pais = paisService.buscarPaisPorId(id);
 
-        List<Temperatura> temperaturasPorAnio = new ArrayList();
-        temperaturasPorAnio = pais.getTemperaturas();
+        List<Temperatura> temperaturasPorPais = new ArrayList();
+        temperaturasPorPais = pais.getTemperaturas();
 
         if (pais != null) {
-            return ResponseEntity.ok(temperaturasPorAnio);
+            return ResponseEntity.ok(temperaturasPorPais);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+/* GET /temperaturas/anios/{anio} : que devuelva la lista de temperaturas de un año en particular en
+el siguiente formato JSON Array:
+[{
+“nombrePais”: “Argentina”,
+“grados”: 29
+},
+{
+“nombrePais”: “Venezuela”,
+“grados”: 45
+}]
 
+
+*/
+
+@GetMapping("/temperaturas/anio/{anio}")
+public ResponseEntity<?> buscarTemperaturasPorAnio(@PathVariable int anioTemperatura){
+
+    List<Temperatura> temperaturasPorAnio = new ArrayList(); 
+    temperaturasPorAnio = temperaturaService.buscarTemperaturaPorAnio(anioTemperatura);
+   
+    return temperaturaPorAnio;
+
+}
+
+
+
+
+/*GET /temperaturas/maximas/{codigoPais} : que devuelva la temperatura máxima para un país en
+particular en este formato JSON(informar el año en que ocurrió)
+{
+“nombrePais”: “Venezuela”,
+“temperaturaMaxima”: 45,
+“anio”: 2011
+}*/
 }  
