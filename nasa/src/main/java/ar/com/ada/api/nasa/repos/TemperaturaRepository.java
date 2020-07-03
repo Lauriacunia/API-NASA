@@ -6,6 +6,7 @@ import ar.com.ada.api.nasa.entities.*;
 
 @Repository
 public interface TemperaturaRepository extends JpaRepository <Temperatura,Integer> {
-
     
+
+  
 }

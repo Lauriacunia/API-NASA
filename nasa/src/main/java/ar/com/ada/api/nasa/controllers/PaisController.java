@@ -17,6 +17,7 @@ public class PaisController {
     @Autowired
     PaisService paisService;
 
+/**GET /paises : que devuelva la lista de países SIN las temperaturas. */
 
     @GetMapping("/paises")
     public ResponseEntity<List<Pais>> listarPaises() {
@@ -24,6 +25,8 @@ public class PaisController {
         return ResponseEntity.ok(paisService.listarPaises());
  
     }
+
+/**GET /paises/{id} : que devuelva la info de un pais en particular(SIN las temperaturas) */
 
     @GetMapping("/paises/{id}")
     public ResponseEntity<?> buscarPaisPorId(@PathVariable int id){
@@ -38,6 +41,9 @@ public class PaisController {
 
     }
 
+/*PUT /paises/{id} : que actualice solo el nombre del país. Usar un requestBody que solo tenga el
+nombre del país.*/
+
     @PutMapping("/empleados/{id}/nombre")
     public ResponseEntity<?> actualizarNombrePais(@PathVariable int id, @RequestBody String nuevoNombre){
 
@@ -50,14 +56,14 @@ public class PaisController {
             GenericResponse resp = new GenericResponse();
             resp.isOk = true;
             resp.id = paisOriginal.getPaisId();
-            resp.message = "Se ha actualizado con exito";
+            resp.message = "Se ha actualizado el nombre del pais con exito";
     
             return ResponseEntity.ok(resp);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    /** POST /paises : que permita la creación de un país */
+/** POST /paises : que permita la creación de un país */
     
     @PostMapping("/paises")
     public ResponseEntity<?> crearPais(@RequestBody PaisRequest info){
