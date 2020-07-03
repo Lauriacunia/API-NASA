@@ -39,9 +39,9 @@ public class PaisController {
     }
 
     @PutMapping("/empleados/{id}/nombre")
-    public ResponseEntity<?> actualizarSueldoEmpleado(@PathVariable int id, @RequestBody String nuevoNombre){
+    public ResponseEntity<?> actualizarNombrePais(@PathVariable int id, @RequestBody String nuevoNombre){
 
-        Pais paisOriginal = paisService.traerPaisPorId(id);
+        Pais paisOriginal = paisService.buscarPaisPorId(id);
 
         if (paisOriginal != null) {
 

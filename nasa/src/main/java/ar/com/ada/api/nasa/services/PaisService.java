@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.nasa.entities;
 
-import ar.com.ada.api.rrhh.repos.PaisRepository;
+import ar.com.ada.api.nasa.repos.PaisRepository;
 
 @Service
 public class PaisService {
@@ -15,11 +15,6 @@ public class PaisService {
     @Autowired
     PaisRepository repository;
 
-    public void crearCategoria(Categoria categoria) {
-
-        repository.save(categoria);
-
-    }
 
     public List<Paises> listarPaises() {
 
@@ -51,5 +46,11 @@ public class PaisService {
         
 
     }
+    public void actualizarNombrePais(Pais paisOriginal, String nuevoNombre){
 
+        paisOriginal.setNombre(nuevoNombre);
+
+        paisRepository.save(paisOriginal);
+
+    }
 }

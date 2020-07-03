@@ -37,13 +37,7 @@ public class EmpleadoService {
         return null;
     }
 
-    public void actualizarSueldoEmpleado(Empleado empleadoOriginal, BigDecimal sueldo){
-
-        empleadoOriginal.setSueldo(sueldo);
-
-        empleadoRepository.save(empleadoOriginal);
-
-    }
+   
 
     public void actualizarEstado(Empleado empleado,int estadoId){
 
