@@ -13,38 +13,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.com.ada.api.rrhh.entities.Empleado;
-import ar.com.ada.api.rrhh.models.requests.EmpleadoRequest;
-import ar.com.ada.api.rrhh.models.requests.SueldoInfoRequest;
-import ar.com.ada.api.rrhh.models.responses.GenericResponse;
-import ar.com.ada.api.rrhh.services.CategoriaService;
-import ar.com.ada.api.rrhh.services.EmpleadoService;
+import ar.com.ada.api.nasa.entities;
+import ar.com.ada.api.nasa.entities.Temperatura;
+import ar.com.ada.api.nasa.models.requests.EmpleadoRequest;
+import ar.com.ada.api.nasa.models.requests.SueldoInfoRequest;
+import ar.com.ada.api.nasa.models.responses.GenericResponse;
+import ar.com.ada.api.nasa.services.PaisService;
+import ar.com.ada.api.nasa.services.TemperaturaService;
 
 @RestController
-public class EmpleadoController {
+public class TemperaturaController {
 
     @Autowired
-    EmpleadoService empleadoService;
+    PaisService paisService;
     @Autowired
-    CategoriaService categoriaService;
+    TemperaturaService temperaturaService;
 
-    @PostMapping("/empleados")
-    public ResponseEntity<?> crearEmpleado(@RequestBody EmpleadoRequest info){
+    @PostMapping("/temperaturas")
+    public ResponseEntity<?> crearTemperatura(@RequestBody TemperaturaRequest info){
         
-        Empleado empleado = new Empleado();
-        empleado.setNombre(info.nombre);
-        empleado.setEdad(info.edad);
-        empleado.setSueldo(info.sueldo);
-        empleado.setCategoria(categoriaService.buscarCategoriaPorId(info.categoriaId));
-        empleado.setFechaAlta(new Date());
-        empleado.setEstadoId(1);
+        Temperatura temperatura = new Temperatura();
+        temperatura.setPais(paisService.buscarPaisPorId(paisId);
+        temperatura.setAnioTemperatura(info.anioTemperatura);
+        temperatura.setTemperaturaGrados(info.temperaturaGrados);
+        
 
-        empleadoService.crearEmpleado(empleado);
+        temperaturaService.crearTemperatura(temperatura);
         
         GenericResponse resp = new GenericResponse();
         resp.isOk = true;
-        resp.id = empleado.getEmpleadoId();
-        resp.message = "Empleado generado con exito";
+        resp.id = temperatura.getTemperaturaId();
+        resp.message = " generado con exito";
 
         return ResponseEntity.ok(resp);
 
