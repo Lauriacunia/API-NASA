@@ -43,5 +43,8 @@ public class PaisService {
         repository.save(paisOriginal);
 
     }
-    
+    public void crearPais(Pais pais){
+
+        repository.save(pais);
+    }
 }

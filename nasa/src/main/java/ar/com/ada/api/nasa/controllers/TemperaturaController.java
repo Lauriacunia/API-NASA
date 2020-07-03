@@ -70,4 +70,9 @@ public class TemperaturaController {
         
 
     }
+    /*GET /temperaturas/paises/{codigoPais} : que devuelva la lista de temperaturas con sus años de un
+    país especifico, indicado por “codigoPais”. */
+    
+
+
 }  

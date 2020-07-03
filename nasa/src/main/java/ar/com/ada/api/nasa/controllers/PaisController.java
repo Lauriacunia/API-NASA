@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.nasa.entities.*;
+import ar.com.ada.api.nasa.models.requests.PaisRequest;
 import ar.com.ada.api.nasa.models.responses.GenericResponse;
 import ar.com.ada.api.nasa.services.*;
 
@@ -56,5 +57,23 @@ public class PaisController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /** POST /paises : que permita la creación de un país */
     
+    @PostMapping("/paises")
+    public ResponseEntity<?> crearPais(@RequestBody PaisRequest info){
+        
+        Pais pais = new Pais();
+        pais.setPaisId(info.paisId);
+        pais.setNombre(info.nombre); 
+        
+        paisService.crearPais(pais);
+        
+        GenericResponse resp = new GenericResponse();
+        resp.isOk = true;
+        resp.id = pais.getPaisId();
+        resp.message = " País generado con exito";
+
+        return ResponseEntity.ok(resp);
+    
+    }
 }
