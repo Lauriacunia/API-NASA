@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.ada.api.nasa.entities.*;
 import ar.com.ada.api.nasa.models.requests.*;
 import ar.com.ada.api.nasa.models.responses.GenericResponse;
+import ar.com.ada.api.nasa.models.responses.TemperaturaMaxPaisResponse;
 import ar.com.ada.api.nasa.services.*;
 
 
@@ -107,15 +108,11 @@ el siguiente formato JSON Array:
 */
 
 @GetMapping("/temperaturas/anio/{anio}")
-public List<Temperatura> buscarTemperaturasPorAnio(@PathVariable int anioTemperatura) {
-
-    List<Temperatura> temperaturasPorAnio = new ArrayList(); 
-    temperaturasPorAnio = temperaturaService.buscarTemperaturasPorAnio(anioTemperatura);
+public ResponseEntity<List<Temperatura>> buscarTemperaturasPorAnio(@PathVariable int anioTemperatura) {
    
-    return temperaturasPorAnio;
+    return    ResponseEntity.ok(temperaturaService.buscarTemperaturasPorAnio(anioTemperatura));
 
 }
-
 
 
 
@@ -126,4 +123,26 @@ particular en este formato JSON(informar el año en que ocurrió)
 “temperaturaMaxima”: 45,
 “anio”: 2011
 }*/
+
+@GetMapping("/temperaturas/maximas/{id}")
+public ResponseEntity<?> buscarTemperaturaMaximaDePaisPorId(@PathVariable int id){
+
+    Pais pais = paisService.buscarPaisPorId(id);
+    List<Temperatura> temperaturasPorPais = new ArrayList();
+        temperaturasPorPais = pais.getTemperaturas();
+
+    Temperatura temperaturaMax = temperaturaService.buscarTemperaturaMaximaDePais(temperaturasPorPais);
+
+    TemperaturaMaxPaisResponse tm = new TemperaturaMaxPaisResponse();
+    tm.nombrePais = pais.getNombre();
+    tm.temperatura = temperaturaMax.getTemperaturaGrados();
+    tm.anio = temperaturaMax.getAnioTemperatura();
+
+    return ResponseEntity.ok(tm);
+    
+    //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+}
+
+
 }  

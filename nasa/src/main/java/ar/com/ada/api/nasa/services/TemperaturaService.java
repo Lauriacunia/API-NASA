@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.nasa.entities.*;
 import ar.com.ada.api.nasa.models.*;
+import ar.com.ada.api.nasa.models.responses.TemperaturaMaxPaisResponse;
 import ar.com.ada.api.nasa.repos.*;
 
 @Service
@@ -39,6 +40,22 @@ public class TemperaturaService {
     public List<Temperatura> buscarTemperaturasPorAnio(int anio){
 
         return temperaturaRepository.findAllByAnio(anio);
+
+    }
+
+    // si hay mas de un valor maximo (dos años con la misma tempratura) fallaria
+    
+    public Temperatura buscarTemperaturaMaximaDePais(List<Temperatura> temperaturasPorPais){
+
+        Temperatura temperaturaMax = null;
+
+        for (Temperatura temperatura : temperaturasPorPais) {
+           
+            if (temperaturaMax.getTemperaturaGrados() < temperatura.getTemperaturaGrados());
+            temperaturaMax = temperatura;
+        }
+
+        return temperaturaMax;
 
     }
     public void borrarTemperatura(Temperatura temperatura){
