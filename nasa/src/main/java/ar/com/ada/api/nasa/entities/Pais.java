@@ -19,11 +19,11 @@ public class Pais {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paisId;
 
-    private String nombre;
-    
-    @OneToMany(mappedBy = "temperatura", cascade = CascadeType.ALL) //,fetch = FetchType.EAGER)
-    @LazyCollection(LazyCollectionOption.FALSE)
+	private String nombre;
+	
     @JsonIgnore
+    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL) //aca se pone el atributo pais de la clase temperatura
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Temperatura> temperaturas;
 
 	public int getPaisId() {

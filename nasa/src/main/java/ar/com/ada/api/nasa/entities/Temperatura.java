@@ -20,7 +20,7 @@ public class Temperatura {
   private int temperaturaId;
 
   @ManyToOne
-  @JoinColumn(name = "pais_id", referencedColumnName = "pais_id")
+  @JoinColumn(name = "pais_id", referencedColumnName = "pais_id") // aca se pone la columan de la FK
   private Pais pais;
 
   @Column(name= "año_temperatura")
@@ -37,13 +37,7 @@ public void setTemperaturaId(int temperaturaId) {
 	this.temperaturaId = temperaturaId;
 }
 
-public Pais getPais() {
-	return pais;
-}
 
-public void setPais(Pais pais) {
-	this.pais = pais;
-}
 
 public int getAnioTemperatura() {
 	return anioTemperatura;
@@ -60,6 +54,16 @@ public double getTemperaturaGrados() {
 public void setTemperaturaGrados(double temperaturaGrados) {
 	this.temperaturaGrados = temperaturaGrados;
 }
+
+public Pais getPais() {
+  return pais;
+}
+
+public void setPais(Pais pais) {
+  this.pais = pais;
+}
+
+
 
   
 }
