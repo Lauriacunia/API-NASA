@@ -1,6 +1,6 @@
 package ar.com.ada.api.nasa.entities;
 
-import java.math.BigDecimal;
+
 
 import java.util.*;
 
@@ -21,10 +21,10 @@ public class Pais {
 
 	private String nombre;
 	
-    @JsonIgnore
     @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL) //aca se pone el atributo pais de la clase temperatura
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Temperatura> temperaturas;
+	@JsonIgnore
+    private List<Temperatura> temperaturas = new ArrayList<>();
 
 	public int getPaisId() {
 		return paisId;

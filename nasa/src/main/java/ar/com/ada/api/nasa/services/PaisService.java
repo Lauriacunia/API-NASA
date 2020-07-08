@@ -14,19 +14,19 @@ import ar.com.ada.api.nasa.repos.*;
 public class PaisService {
 
     @Autowired
-    PaisRepository repository;
+    PaisRepository paisRepository;
 
 
     public List<Pais> listarPaises() {
 
-        return repository.findAll();
+        return paisRepository.findAll();
     }
 
 
 
     public Pais buscarPaisPorId(int paisId){
     
-        Optional<Pais> pOptional = repository.findById(paisId);
+        Optional<Pais> pOptional = paisRepository.findById(paisId);
        
         if(pOptional.isPresent()){
 
@@ -40,11 +40,11 @@ public class PaisService {
 
         paisOriginal.setNombre(nuevoNombre);
 
-        repository.save(paisOriginal);
+        paisRepository.save(paisOriginal);
 
     }
     public void crearPais(Pais pais){
 
-        repository.save(pais);
+        paisRepository.save(pais);
     }
 }

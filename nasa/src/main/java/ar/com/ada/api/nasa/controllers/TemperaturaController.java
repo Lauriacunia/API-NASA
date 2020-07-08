@@ -6,18 +6,11 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.nasa.entities.*;
 import ar.com.ada.api.nasa.models.requests.*;
-import ar.com.ada.api.nasa.models.responses.GenericResponse;
-import ar.com.ada.api.nasa.models.responses.TemperaturaMaxPaisResponse;
+import ar.com.ada.api.nasa.models.responses.*;
 import ar.com.ada.api.nasa.services.*;
 
 
@@ -34,13 +27,10 @@ public class TemperaturaController {
     @PostMapping("/temperaturas")
     public ResponseEntity<?> crearTemperatura(@RequestBody TemperaturaRequest info){
         
-        Temperatura temperatura = new Temperatura();
-        temperatura.setPais(paisService.buscarPaisPorId(info.paisId));
-        temperatura.setAnioTemperatura(info.anioTemperatura);
-        temperatura.setTemperaturaGrados(info.temperaturaGrados);
+      
         
 
-        temperaturaService.crearTemperatura(temperatura);
+       temperaturaService.crearTemperatura(info.anio, info.paisId, info.grados);
         
         GenericResponse resp = new GenericResponse();
         resp.isOk = true;

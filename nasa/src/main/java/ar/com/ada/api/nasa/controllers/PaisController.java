@@ -45,23 +45,29 @@ public class PaisController {
 nombre del país.*/
 
     @PutMapping("/empleados/{id}/nombre")
-    public ResponseEntity<?> actualizarNombrePais(@PathVariable int id, @RequestBody String nuevoNombre){
+    public ResponseEntity<GenericResponse> actualizarNombrePais(@PathVariable int id, @RequestBody String nuevoNombre){
 
+        GenericResponse r = new GenericResponse();
         Pais paisOriginal = paisService.buscarPaisPorId(id);
 
         if (paisOriginal != null) {
 
             paisService.actualizarNombrePais(paisOriginal, nuevoNombre);
 
-            GenericResponse resp = new GenericResponse();
-            resp.isOk = true;
-            resp.id = paisOriginal.getPaisId();
-            resp.message = "Se ha actualizado el nombre del pais con exito";
+           
+            r.isOk = true;
+            
+            r.message = "Se ha actualizado el nombre del pais con exito";
     
-            return ResponseEntity.ok(resp);
+            return ResponseEntity.ok(r);
+            
+        } else {
+
+            r.isOk = false;
+            r.message = "No se pudo actualizar el pais.";
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 
 /** POST /paises : que permita la creación de un país */
     

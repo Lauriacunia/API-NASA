@@ -1,6 +1,6 @@
 package ar.com.ada.api.nasa.entities;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "temperatura")
@@ -61,6 +61,7 @@ public Pais getPais() {
 
 public void setPais(Pais pais) {
   this.pais = pais;
+  this.pais.getTemperaturas().add(this);
 }
 
 
