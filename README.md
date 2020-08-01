@@ -4,7 +4,7 @@
 
 ## Funcionalidad
 
-- [x] Crear un regustro de país
+- [x] Crear un registro de país
 - [x] Listar países (sin sus registros de temperatura)
 - [x] Buscar un país por Id 
 - [x] Actualizar el nombre de un país
